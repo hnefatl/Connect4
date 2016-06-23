@@ -7,14 +7,14 @@ TextureManager::TextureManager(SDL_Renderer *const Renderer, const UnloadBehavio
 {
 }
 
-void TextureManager::DestroyAsset(SDL_Texture *Texture)
-{
-	SDL_DestroyTexture(Texture);
-}
 
-SDL_Texture *TextureManager::LoadAsset(const std::string &Path)
+std::string TextureManager::GetKey(const TextureSettings &Settings)
 {
-	SDL_Surface *Orig = IMG_Load(Path.c_str()); // Load as a surface
+	return Settings.Path;
+}
+SDL_Texture *TextureManager::LoadAsset(const TextureSettings &Settings)
+{
+	SDL_Surface *Orig = IMG_Load(Settings.Path.c_str()); // Load as a surface
 	if (Orig == nullptr)
 		return nullptr;
 
@@ -22,4 +22,8 @@ SDL_Texture *TextureManager::LoadAsset(const std::string &Path)
 	SDL_FreeSurface(Orig);
 
 	return Texture;
+}
+void TextureManager::DestroyAsset(SDL_Texture *Texture)
+{
+	SDL_DestroyTexture(Texture);
 }

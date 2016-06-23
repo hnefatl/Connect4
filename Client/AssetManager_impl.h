@@ -9,46 +9,45 @@ enum UnloadBehaviour
 	OnEmpty,
 };
 
-template<typename T>
-AssetManager<T>::AssetManager(const UnloadBehaviour Behaviour)
+template<typename AssetType, typename KeyType>
+AssetManager<AssetType, KeyType>::AssetManager(const UnloadBehaviour Behaviour)
 	:Behaviour(Behaviour)
 {
 }
-template<typename T>
-AssetManager<T>::~AssetManager()
+template<typename AssetType, typename KeyType>
+AssetManager<AssetType, KeyType>::~AssetManager()
 {
 	UnloadAll();
 }
 
-template<typename T>
-bool AssetManager<T>::Loaded(const std::string &Name) const
-{
-	return Cache.find(Name) != Cache.end();
-}
 
-template<typename T>
-T *AssetManager<T>::Load(const std::string &Path)
+template<typename AssetType, typename KeyType>
+AssetType *AssetManager<AssetType, KeyType>::Load(const AssetSettings &Settings)
 {
-	// Check if it's already in the cache
-	std::map<std::string, T *>::iterator Loc = Cache.find(Name);
-	if (Loc != Cache.end()) // It is
+	KeyType Key = GetKey(Settings);
+
+	std::map<KeyType, AssetType *>::iterator Loc = Cache.find(Key);
+	if (Loc != Cache.end()) // If contained
 	{
 		Usage[Loc->second]++; // One more reference being handed out
 		return Loc->second;
 	}
 
-	T *Asset = LoadAsset(Path);
+	AssetType *Asset = LoadAsset(Settings);
 
-	Cache.emplace(Name, Asset); // Store in cache
-	Reverse.emplace(Asset, Name);
+	if (Asset == nullptr)
+		return nullptr;
+
+	Cache.emplace(Key, Asset); // Store in cache
+	Reverse.emplace(Asset, Key);
 	Usage.emplace(Asset, 1); // Record our one reference so far
-	return Texture;
+	return Asset;
 }
 
-template<typename T>
-void AssetManager<T>::Unload(T *Asset)
+template<typename AssetType, typename KeyType>
+void AssetManager<AssetType, KeyType>::Unload(AssetType *Asset)
 {
-	std::map<T *, unsigned int>::iterator Use = Usage.find(Asset);
+	std::map<AssetType *, unsigned int>::iterator Use = Usage.find(Asset);
 	if (Use == Usage.end()) // Not stored in the usage list
 		return;
 
@@ -56,7 +55,7 @@ void AssetManager<T>::Unload(T *Asset)
 
 	if (Use->second == 0 && Behaviour == UnloadBehaviour::Immediate) // If no more references to it and we're set to unload immediately
 	{
-		std::map<T *, std::string>::iterator Name = Reverse.find(Asset); // Get the name
+		std::map<AssetType *, KeyType>::iterator Name = Reverse.find(Asset); // Get the name
 		if (Name == Reverse.end()) // Unloading a texture that's no longer loaded
 			return;
 
@@ -67,14 +66,20 @@ void AssetManager<T>::Unload(T *Asset)
 	}
 }
 
-template<typename T>
-void AssetManager<T>::UnloadUnused()
+template<typename AssetType, typename KeyType>
+bool AssetManager<AssetType, KeyType>::IsLoaded(const KeyType &Key) const
 {
-	for (std::map<std::string, T *>::iterator i = Cache.begin(); i != Cache.end(); i++)
+	return Cache.find(Key) != Cache.end();
+}
+
+template<typename AssetType, typename KeyType>
+void AssetManager<AssetType, KeyType>::UnloadUnused()
+{
+	for (std::map<KeyType, AssetType *>::iterator i = Cache.begin(); i != Cache.end(); i++)
 	{
 		if (Usage[i->second] == 0) // No references
 		{
-			T *Ref = i->second;
+			AssetType *Ref = i->second;
 			Usage.erase(Ref);
 			Reverse.erase(Ref);
 			Cache.erase(i->first);
@@ -84,24 +89,24 @@ void AssetManager<T>::UnloadUnused()
 		}
 	}
 }
-template<typename T>
-void AssetManager<T>::UnloadAll()
+template<typename AssetType, typename KeyType>
+void AssetManager<AssetType, KeyType>::UnloadAll()
 {
 	Reverse.clear();
 	Usage.clear();
-	for (std::map<std::string, T *>::iterator i = Cache.begin(); i != Cache.end(); i++)
+	for (std::map<KeyType, AssetType *>::iterator i = Cache.begin(); i != Cache.end(); i++)
 		DestroyAsset(i->second);
 	Cache.clear();
 }
 
 
-template<typename T>
-UnloadBehaviour AssetManager<T>::GetUnloadBehaviour() const
+template<typename AssetType, typename KeyType>
+UnloadBehaviour AssetManager<AssetType, KeyType>::GetUnloadBehaviour() const
 {
 	return Behaviour;
 }
-template<typename T>
-void AssetManager<T>::SetUnloadBehaviour(const UnloadBehaviour Behaviour)
+template<typename AssetType, typename KeyType>
+void AssetManager<AssetType, KeyType>::SetUnloadBehaviour(const UnloadBehaviour Behaviour)
 {
 	this->Behaviour = Behaviour;
 }

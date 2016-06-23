@@ -6,20 +6,15 @@ FontManager::FontManager(const UnloadBehaviour Behaviour)
 }
 
 
-TTF_Font *FontManager::LoadAsset(const std::string &Path)
+std::string FontManager::GetKey(const FontSettings &Settings) const
 {
-	return TTF_OpenFont(Path.c_str(), FontLoadSize);
+	return Settings.Path + ":" + SDL_uitoa(Settings.Size, nullptr, 10);
+}
+TTF_Font *FontManager::LoadAsset(const FontSettings &Settings)
+{
+	return TTF_OpenFont(Settings.Path.c_str(), Settings.Size);
 }
 void FontManager::DestroyAsset(TTF_Font *Font)
 {
 	TTF_CloseFont(Font);
-}
-
-unsigned int FontManager::GetFontLoadSize() const
-{
-	return FontLoadSize;
-}
-void FontManager::SetFontLoadSize(const unsigned int FontLoadSize)
-{
-	this->FontLoadSize = FontLoadSize;
 }

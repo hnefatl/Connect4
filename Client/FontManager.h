@@ -5,19 +5,25 @@
 
 #include "AssetManager.h"
 
+class FontSettings
+	: public AssetSettings
+{
+public:
+	std::string Path;
+	unsigned int Size;
+};
+
 class FontManager
-	: public AssetManager<TTF_Font>
+	: public AssetManager<TTF_Font, std::string>
 {
 protected:
-	unsigned int FontLoadSize;
 
-	TTF_Font *LoadAsset(const std::string &Path);
+	std::string GetKey(const FontSettings &Settings) const;
+	TTF_Font *LoadAsset(const FontSettings &Settings);
 	void DestroyAsset(TTF_Font *Texture);
 public:
 	FontManager(const UnloadBehaviour Behaviour);
 
-	unsigned int GetFontLoadSize() const;
-	void SetFontLoadSize(const unsigned int FontLoadSize);
 };
 
 #endif

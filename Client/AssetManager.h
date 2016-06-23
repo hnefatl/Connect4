@@ -5,27 +5,33 @@
 
 enum UnloadBehaviour;
 
-template<typename T>
+class AssetSettings // Inherited and used to pass information into the Load function
+{
+};
+
+template<typename AssetType, typename KeyType>
 class AssetManager
 {
 protected:
-	std::map<std::string, T *> Cache; // Maps a resource name to the actual asset
-	std::map<T *, std::string> Reverse; // Maps the asset back to the resource name, used for unloading assets
-	std::map<T *, unsigned int> Usage; // Maps an asset to the number of active users
+	std::map<KeyType, AssetType *> Cache; // Maps a resource name to the actual asset
+	std::map<AssetType *, KeyType> Reverse; // Maps the asset back to the resource name, used for unloading assets
+	std::map<AssetType *, unsigned int> Usage; // Maps an asset to the number of active users
 
 	UnloadBehaviour Behaviour;
+	
 
-	virtual T *LoadAsset(const std::string &Path) = 0;
-	virtual void DestroyAsset(T *Asset) = 0;
+	virtual KeyType GetKey(const AssetSettings &Settings) const = 0;
+	virtual AssetType *LoadAsset(const AssetSettings &Settings) = 0;
+	virtual void DestroyAsset(AssetType *Asset) = 0;
 
 public:
 	AssetManager(const UnloadBehaviour Behaviour);
 	~AssetManager();
 
-	T *Load(const std::string &Path);
-	void Unload(T *Asset);
+	AssetType *Load(const AssetSettings &Settings);
+	void Unload(AssetType *Asset);
 
-	bool Loaded(const std::string &Path) const;
+	bool IsLoaded(const KeyType &Key) const;
 
 	virtual void UnloadUnused();
 	virtual void UnloadAll();
