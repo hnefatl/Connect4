@@ -71,25 +71,25 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\Bin\$(Configuration)\$(PlatformTarget)\</OutDir>
     <LibraryPath>$(SolutionDir)\SDL\SDL2-2.0.4\lib\$(PlatformTarget)\;$(SolutionDir)\SDL\SDL2_ttf-2.0.14\lib\$(PlatformTarget)\;$(SolutionDir)\SDL\SDL2_image-2.0.1\lib\$(PlatformTarget)\;$(SolutionDir)\Lib\$(Configuration)\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)\SDL\SDL2_image-2.0.1\include\;$(SolutionDir)\SDL\SDL2-2.0.4\include\;$(SolutionDir)\Lib\$(Configuration)\Include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)\SDL\SDL2_image-2.0.1\include\;$(SolutionDir)\SDL\SDL2-2.0.4\include\;$(SolutionDir)\Engine\;$(IncludePath)</IncludePath>
     <IntDir>$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\Bin\$(Configuration)\$(PlatformTarget)\</OutDir>
     <LibraryPath>$(SolutionDir)\SDL\SDL2-2.0.4\lib\$(PlatformTarget)\;$(SolutionDir)\SDL\SDL2_ttf-2.0.14\lib\$(PlatformTarget)\;$(SolutionDir)\SDL\SDL2_image-2.0.1\lib\$(PlatformTarget)\;$(SolutionDir)\Lib\$(Configuration)\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)\SDL\SDL2_image-2.0.1\include\;$(SolutionDir)\SDL\SDL2-2.0.4\include\;$(SolutionDir)\Lib\$(Configuration)\Include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)\SDL\SDL2_image-2.0.1\include\;$(SolutionDir)\SDL\SDL2-2.0.4\include\;$(SolutionDir)\Engine\;$(IncludePath)</IncludePath>
     <IntDir>$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)\Bin\$(Configuration)\$(PlatformTarget)\</OutDir>
     <LibraryPath>$(SolutionDir)\SDL\SDL2-2.0.4\lib\$(PlatformTarget)\;$(SolutionDir)\SDL\SDL2_ttf-2.0.14\lib\$(PlatformTarget)\;$(SolutionDir)\SDL\SDL2_image-2.0.1\lib\$(PlatformTarget)\;$(SolutionDir)\Lib\$(Configuration)\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)\SDL\SDL2_image-2.0.1\include\;$(SolutionDir)\SDL\SDL2-2.0.4\include\;$(SolutionDir)\Lib\$(Configuration)\Include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)\SDL\SDL2_image-2.0.1\include\;$(SolutionDir)\SDL\SDL2-2.0.4\include\;$(SolutionDir)\Engine\;$(IncludePath)</IncludePath>
     <IntDir>$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\Bin\$(Configuration)\$(PlatformTarget)\</OutDir>
     <LibraryPath>$(SolutionDir)\SDL\SDL2-2.0.4\lib\$(PlatformTarget)\;$(SolutionDir)\SDL\SDL2_ttf-2.0.14\lib\$(PlatformTarget)\;$(SolutionDir)\SDL\SDL2_image-2.0.1\lib\$(PlatformTarget)\;$(SolutionDir)\Lib\$(Configuration)\$(PlatformTarget)\;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)\SDL\SDL2_image-2.0.1\include\;$(SolutionDir)\SDL\SDL2-2.0.4\include\;$(SolutionDir)\Lib\$(Configuration)\Include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\SDL\SDL2_ttf-2.0.14\include;$(SolutionDir)\SDL\SDL2_image-2.0.1\include\;$(SolutionDir)\SDL\SDL2-2.0.4\include\;$(SolutionDir)\Engine\;$(IncludePath)</IncludePath>
     <IntDir>$(Configuration)\$(Platform)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -100,7 +100,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Opengl32.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,7 +111,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Opengl32.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,7 +126,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Opengl32.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,7 +141,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Opengl32.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

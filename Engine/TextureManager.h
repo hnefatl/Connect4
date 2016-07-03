@@ -4,25 +4,29 @@
 #include <SDL.h>
 
 #include "AssetManager.h"
+#include "Texture.h"
 
 class TextureSettings
-	: public AssetSettings
 {
 public:
 	std::string Path;
+
+	TextureSettings(const std::string &Path)
+		:Path(Path)
+	{
+	}
 };
 
 class TextureManager
-	: public AssetManager<SDL_Texture, std::string>
+	: public AssetManager<Texture, std::string, TextureSettings>
 {
 protected:
-	SDL_Renderer *const Renderer;
-	
-	std::string GetKey(const TextureSettings &Settings);
-	SDL_Texture *LoadAsset(const TextureSettings &Settings);
-	void DestroyAsset(SDL_Texture *Texture);
+	std::string GetKey(const TextureSettings &Settings) const;
+	Texture *LoadAsset(const TextureSettings &Settings);
+	void DestroyAsset(Texture *Texture);
+
 public:
-	TextureManager(SDL_Renderer *const Renderer, const UnloadBehaviour Behaviour);
+	TextureManager(const UnloadBehaviour Behaviour);
 
 };
 

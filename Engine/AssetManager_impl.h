@@ -9,20 +9,20 @@ enum UnloadBehaviour
 	OnEmpty,
 };
 
-template<typename AssetType, typename KeyType>
-AssetManager<AssetType, KeyType>::AssetManager(const UnloadBehaviour Behaviour)
+template<typename AssetType, typename KeyType, typename SettingsType>
+AssetManager<AssetType, KeyType, SettingsType>::AssetManager(const UnloadBehaviour Behaviour)
 	:Behaviour(Behaviour)
 {
 }
-template<typename AssetType, typename KeyType>
-AssetManager<AssetType, KeyType>::~AssetManager()
+template<typename AssetType, typename KeyType, typename SettingsType>
+AssetManager<AssetType, KeyType, SettingsType>::~AssetManager()
 {
 	UnloadAll();
 }
 
 
-template<typename AssetType, typename KeyType>
-AssetType *AssetManager<AssetType, KeyType>::Load(const AssetSettings &Settings)
+template<typename AssetType, typename KeyType, typename SettingsType>
+AssetType *AssetManager<AssetType, KeyType, SettingsType>::Load(const SettingsType &Settings)
 {
 	KeyType Key = GetKey(Settings);
 
@@ -44,8 +44,8 @@ AssetType *AssetManager<AssetType, KeyType>::Load(const AssetSettings &Settings)
 	return Asset;
 }
 
-template<typename AssetType, typename KeyType>
-void AssetManager<AssetType, KeyType>::Unload(AssetType *Asset)
+template<typename AssetType, typename KeyType, typename SettingsType>
+void AssetManager<AssetType, KeyType, SettingsType>::Unload(AssetType *Asset)
 {
 	std::map<AssetType *, unsigned int>::iterator Use = Usage.find(Asset);
 	if (Use == Usage.end()) // Not stored in the usage list
@@ -66,14 +66,14 @@ void AssetManager<AssetType, KeyType>::Unload(AssetType *Asset)
 	}
 }
 
-template<typename AssetType, typename KeyType>
-bool AssetManager<AssetType, KeyType>::IsLoaded(const KeyType &Key) const
+template<typename AssetType, typename KeyType, typename SettingsType>
+bool AssetManager<AssetType, KeyType, SettingsType>::IsLoaded(const KeyType &Key) const
 {
 	return Cache.find(Key) != Cache.end();
 }
 
-template<typename AssetType, typename KeyType>
-void AssetManager<AssetType, KeyType>::UnloadUnused()
+template<typename AssetType, typename KeyType, typename SettingsType>
+void AssetManager<AssetType, KeyType, SettingsType>::UnloadUnused()
 {
 	for (std::map<KeyType, AssetType *>::iterator i = Cache.begin(); i != Cache.end(); i++)
 	{
@@ -89,8 +89,8 @@ void AssetManager<AssetType, KeyType>::UnloadUnused()
 		}
 	}
 }
-template<typename AssetType, typename KeyType>
-void AssetManager<AssetType, KeyType>::UnloadAll()
+template<typename AssetType, typename KeyType, typename SettingsType>
+void AssetManager<AssetType, KeyType, SettingsType>::UnloadAll()
 {
 	Reverse.clear();
 	Usage.clear();
@@ -100,13 +100,13 @@ void AssetManager<AssetType, KeyType>::UnloadAll()
 }
 
 
-template<typename AssetType, typename KeyType>
-UnloadBehaviour AssetManager<AssetType, KeyType>::GetUnloadBehaviour() const
+template<typename AssetType, typename KeyType, typename SettingsType>
+UnloadBehaviour AssetManager<AssetType, KeyType, SettingsType>::GetUnloadBehaviour() const
 {
 	return Behaviour;
 }
-template<typename AssetType, typename KeyType>
-void AssetManager<AssetType, KeyType>::SetUnloadBehaviour(const UnloadBehaviour Behaviour)
+template<typename AssetType, typename KeyType, typename SettingsType>
+void AssetManager<AssetType, KeyType, SettingsType>::SetUnloadBehaviour(const UnloadBehaviour Behaviour)
 {
 	this->Behaviour = Behaviour;
 }

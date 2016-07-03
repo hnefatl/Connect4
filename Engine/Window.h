@@ -27,8 +27,6 @@ public:
 	const SDL_Window *const GetWindow() const;
 
 	bool Init(const bool Borderless, const bool Fullscreen, const bool MouseCaptured);
-
-	SDL_Renderer *GetRenderer(const int Index, const SDL_RendererFlags Flags) const;
 };
 
 #endif

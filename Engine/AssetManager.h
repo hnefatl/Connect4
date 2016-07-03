@@ -5,11 +5,7 @@
 
 enum UnloadBehaviour;
 
-class AssetSettings // Inherited and used to pass information into the Load function
-{
-};
-
-template<typename AssetType, typename KeyType>
+template<typename AssetType, typename KeyType, typename SettingsType>
 class AssetManager
 {
 protected:
@@ -20,15 +16,15 @@ protected:
 	UnloadBehaviour Behaviour;
 	
 
-	virtual KeyType GetKey(const AssetSettings &Settings) const = 0;
-	virtual AssetType *LoadAsset(const AssetSettings &Settings) = 0;
+	virtual KeyType GetKey(const SettingsType &Settings) const = 0;
+	virtual AssetType *LoadAsset(const SettingsType &Settings) = 0;
 	virtual void DestroyAsset(AssetType *Asset) = 0;
 
 public:
 	AssetManager(const UnloadBehaviour Behaviour);
 	~AssetManager();
 
-	AssetType *Load(const AssetSettings &Settings);
+	AssetType *Load(const SettingsType &Settings);
 	void Unload(AssetType *Asset);
 
 	bool IsLoaded(const KeyType &Key) const;

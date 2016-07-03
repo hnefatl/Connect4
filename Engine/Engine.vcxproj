@@ -27,6 +27,7 @@
     <ClInclude Include="GL.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Window.h" />

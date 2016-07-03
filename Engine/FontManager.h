@@ -6,7 +6,6 @@
 #include "AssetManager.h"
 
 class FontSettings
-	: public AssetSettings
 {
 public:
 	std::string Path;
@@ -14,7 +13,7 @@ public:
 };
 
 class FontManager
-	: public AssetManager<TTF_Font, std::string>
+	: public AssetManager<TTF_Font, std::string, FontSettings>
 {
 protected:
 
