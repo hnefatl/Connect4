@@ -6,7 +6,11 @@
 #include <Error.h>
 #include <TextureManager.h>
 
+#include <SDL.h>
 #include <GL.h>
+
+#include <list>
+#include <time.h>
 
 
 int main(int argc, char *argv[])
@@ -14,16 +18,16 @@ int main(int argc, char *argv[])
 	if (!EngineInit())
 		return -1;
 
-	Window Window("", 640, 480);
+	Window Window("Blah", 1366, 768);
 
 	if (!Window.Init(false, false, false))
 		ErrorExit("Failed to create Window", SDL_GetError(), -1);
 
-	TextureManager Man(Immediate);
-	Texture t = Man.Load(TextureSettings("Test.png"));
 
 
 
+
+	Window.~Window();
 	EngineQuit();
 
 	return 0;

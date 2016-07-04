@@ -21,7 +21,7 @@ protected:
 	TTF_Font *LoadAsset(const FontSettings &Settings);
 	void DestroyAsset(TTF_Font *Texture);
 public:
-	FontManager(const UnloadBehaviour Behaviour);
+	FontManager(const std::string &AssetDir, const UnloadBehaviour Behaviour);
 
 };
 

@@ -1,14 +1,14 @@
 #include "FontManager.h"
 
-FontManager::FontManager(const UnloadBehaviour Behaviour)
-	: AssetManager(Behaviour)
+FontManager::FontManager(const std::string &AssetDir, const UnloadBehaviour Behaviour)
+	: AssetManager(AssetDir, Behaviour)
 {
 }
 
 
 std::string FontManager::GetKey(const FontSettings &Settings) const
 {
-	return Settings.Path + ":" + SDL_uitoa(Settings.Size, nullptr, 10);
+	return AssetDir + '/' + Settings.Path + ":" + SDL_uitoa(Settings.Size, nullptr, 10);
 }
 TTF_Font *FontManager::LoadAsset(const FontSettings &Settings)
 {

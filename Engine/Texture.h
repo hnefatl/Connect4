@@ -3,6 +3,14 @@
 
 #include "GL.h"
 
-typedef GLuint Texture;
+class Texture
+{
+public:
+	GLuint Inner;
+	unsigned int Width, Height;
+	
+	Texture();
+	Texture(const GLuint Texture, const unsigned int Width, const unsigned int Height);
+};
 
 #endif

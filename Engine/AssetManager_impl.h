@@ -10,8 +10,8 @@ enum UnloadBehaviour
 };
 
 template<typename AssetType, typename KeyType, typename SettingsType>
-AssetManager<AssetType, KeyType, SettingsType>::AssetManager(const UnloadBehaviour Behaviour)
-	:Behaviour(Behaviour)
+AssetManager<AssetType, KeyType, SettingsType>::AssetManager(const std::string &AssetDir, const UnloadBehaviour Behaviour)
+	: AssetDir(AssetDir), Behaviour(Behaviour)
 {
 }
 template<typename AssetType, typename KeyType, typename SettingsType>

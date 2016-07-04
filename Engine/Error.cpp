@@ -1,21 +1,25 @@
 #include "Error.h"
 
+#include <iostream>
+
 bool ErrorInit(const std::string &LogPath)
 {
-	if (ErrorInited)
-		return true;
 	try
 	{
-		std::ofstream Log(LogPath);
-		if (!Log.good())
+		Out = new std::ofstream(LogPath);
+		if (!Out->good())
 			return false;
-		std::cerr.rdbuf(Log.rdbuf());
+		Log("Opened");
 	}
 	catch (...)
 	{
 		return false;
 	}
 
-	ErrorInited = true;
 	return true;
+}
+void ErrorQuit()
+{
+	Out->close();
+	Out = nullptr;
 }

@@ -9,6 +9,7 @@ class Window
 {
 protected:
 	SDL_Window *Inner;
+	SDL_GLContext Context;
 	SDL_Surface *Surface;
 
 	unsigned int Width;
@@ -24,7 +25,7 @@ public:
 	unsigned int GetWidth() const;
 	unsigned int GetHeight() const;
 
-	const SDL_Window *const GetWindow() const;
+	SDL_Window *GetWindow() const;
 
 	bool Init(const bool Borderless, const bool Fullscreen, const bool MouseCaptured);
 };

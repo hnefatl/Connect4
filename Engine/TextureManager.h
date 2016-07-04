@@ -26,7 +26,7 @@ protected:
 	void DestroyAsset(Texture *Texture);
 
 public:
-	TextureManager(const UnloadBehaviour Behaviour);
+	TextureManager(const std::string &AssetDir, const UnloadBehaviour Behaviour);
 
 };
 

@@ -2,6 +2,7 @@
 #define _ASSETMANAGER_H
 
 #include <map>
+#include <string>
 
 enum UnloadBehaviour;
 
@@ -14,14 +15,14 @@ protected:
 	std::map<AssetType *, unsigned int> Usage; // Maps an asset to the number of active users
 
 	UnloadBehaviour Behaviour;
-	
+	std::string AssetDir;
 
 	virtual KeyType GetKey(const SettingsType &Settings) const = 0;
 	virtual AssetType *LoadAsset(const SettingsType &Settings) = 0;
 	virtual void DestroyAsset(AssetType *Asset) = 0;
 
 public:
-	AssetManager(const UnloadBehaviour Behaviour);
+	AssetManager(const std::string &AssetDir, const UnloadBehaviour Behaviour);
 	~AssetManager();
 
 	AssetType *Load(const SettingsType &Settings);
