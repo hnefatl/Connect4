@@ -35,4 +35,5 @@ Texture *TextureManager::LoadAsset(const TextureSettings &Settings)
 void TextureManager::DestroyAsset(Texture *Texture)
 {
 	glDeleteTextures(1, &Texture->Inner);
+	delete Texture;
 }

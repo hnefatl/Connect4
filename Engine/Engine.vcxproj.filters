@@ -13,23 +13,44 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\GSM">
-      <UniqueIdentifier>{1a3f6b6d-2188-4c0c-b5e6-6c2e0ba8f346}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GSM">
-      <UniqueIdentifier>{e70815fb-eb6a-4a16-b833-a740dbc3dba4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Assets">
       <UniqueIdentifier>{8ce14b57-c51b-4b16-91a5-b46bda2f3e95}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Assets">
       <UniqueIdentifier>{c49771d0-7050-4ed8-801e-9a04725b1198}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Component System">
+      <UniqueIdentifier>{96d77c79-f13b-4635-9e00-be6b93c9e8c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Component System">
+      <UniqueIdentifier>{e449af87-c578-4538-bd1b-5983aa7e34cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Component System\Components">
+      <UniqueIdentifier>{aa7ddd03-39d8-4487-be9a-da2c63c6b731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Component System\Components">
+      <UniqueIdentifier>{746788d1-eda4-46e7-b90e-0a9d13685b4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Component System\Systems">
+      <UniqueIdentifier>{a7aedd98-9a04-4e6b-8ad9-f3250ad23fc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Component System\Systems">
+      <UniqueIdentifier>{df9ba340-7e72-4401-9a1a-5ccb2e3f54bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State Management">
+      <UniqueIdentifier>{1a3f6b6d-2188-4c0c-b5e6-6c2e0ba8f346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State Management">
+      <UniqueIdentifier>{e70815fb-eb6a-4a16-b833-a740dbc3dba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{adf863f7-1816-49e6-a21a-a47117f654d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{e37e1a2f-42d1-48ac-98dc-69aea111dbdb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Error.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,10 +58,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
-      <Filter>Header Files\GSM</Filter>
+      <Filter>Header Files\State Management</Filter>
     </ClInclude>
     <ClInclude Include="StateManager.h">
-      <Filter>Header Files\GSM</Filter>
+      <Filter>Header Files\State Management</Filter>
     </ClInclude>
     <ClInclude Include="AssetManager.h">
       <Filter>Header Files\Assets</Filter>
@@ -57,17 +78,20 @@
     <ClInclude Include="Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Header Files\Assets</Filter>
     </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header Files\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="GL.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Error.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,16 +105,22 @@
       <Filter>Source Files\Assets</Filter>
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
-      <Filter>Source Files\GSM</Filter>
+      <Filter>Source Files\State Management</Filter>
     </ClCompile>
     <ClCompile Include="Screen.cpp">
-      <Filter>Source Files\GSM</Filter>
+      <Filter>Source Files\State Management</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Error.cpp">
+      <Filter>Source Files\Misc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
